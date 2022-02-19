@@ -33,7 +33,6 @@ namespace ColorARGB
             info += $"Color = {Rectangle.Fill}";
             MessageBox.Show(info);
         }
-
         private void Clone_OnClick(object sender, RoutedEventArgs e)
         {
             var clone = new Rectangle
