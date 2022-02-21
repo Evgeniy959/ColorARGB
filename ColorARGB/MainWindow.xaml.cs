@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,27 +25,21 @@ namespace ColorARGB
         public MainWindow()
         {
             InitializeComponent();
-            var colors = new List<string> { "red", "black", "yellow" };
-            Select_Color.ItemsSource = colors;
+            this.DataContext = new ViewModels();
         }
-        private void Show_Info_OnClick(object sender, RoutedEventArgs e)
+        public class ObservableObject : INotifyPropertyChanged
         {
-            var info = $"Width = {Rectangle.Width}\n";
-            info += $"Height = {Rectangle.Height}\n";
-            info += $"Color = {Rectangle.Fill}";
-            MessageBox.Show(info);
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected void OnPropertyChanged([CallerMemberName] string prop = "")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            }
         }
 
-        private void Clone_OnClick(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var clone = new Rectangle
-            {
-                Fill = Rectangle.Fill,
-                Width = Rectangle.Width,
-                Height = Rectangle.Height,
-                Margin = Rectangle.Margin
-            };
-            Panel.Children.Add(clone);
+
         }
     }
 }
