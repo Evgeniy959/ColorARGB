@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -22,10 +23,17 @@ namespace ColorARGB
     /// </summary>
     public partial class MainWindow : Window
     {
+        //public ObservableCollection<MyColor> colors { set; get; }
+        public ObservableCollection<Color> colors { set; get; }
+
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new ViewModels();
+            //colors = new ObservableCollection<MyColor>();
+            colors = new ObservableCollection<Color>();
+            ListColor.ItemsSource = colors;
+
         }
         public class ObservableObject : INotifyPropertyChanged
         {
@@ -37,9 +45,11 @@ namespace ColorARGB
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //colors.Add
+            //var selected = (sender as Slider). as st
+            //ListColor.SelectedItem = C;
         }
     }
 }

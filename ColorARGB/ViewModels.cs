@@ -10,11 +10,10 @@ namespace ColorARGB
 {
     public class ViewModels : ObservableObject
     {
-        public ObservableCollection<MyColor> Colors { set; get; }
+        //public ObservableCollection<MyColor> Colors { set; get; }
 
         public ViewModels()
         {
-            Colors = new ObservableCollection<MyColor>();
             SelectedColor = new MyColor { Alpha = 127, Red = 255, Green = 255, Blue = 0 };
         }
 

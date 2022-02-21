@@ -11,6 +11,10 @@ namespace ColorARGB
     public class MyColor : ObservableObject
     {
         private Brush brush;
+        private byte alpha;
+        private byte red;
+        private byte green;
+        private byte blue;
 
         public Brush Brush
         {
@@ -24,8 +28,6 @@ namespace ColorARGB
                 }
             }
         }
-
-
         public MyColor()
         {
             this.PropertyChanged += MyColor_PropertyChanged;
@@ -36,9 +38,6 @@ namespace ColorARGB
             if (e.PropertyName == "Alpha" || e.PropertyName == "Red" || e.PropertyName == "Blue" || e.PropertyName == "Green")
                 Brush = new SolidColorBrush(Color.FromArgb(Alpha, Red, Green, Blue));
         }
-
-        private byte alpha;
-
         public byte Alpha
         {
             get { return alpha; }
@@ -51,11 +50,6 @@ namespace ColorARGB
                 }
             }
         }
-
-
-
-        private byte red;
-
         public byte Red
         { 
             get { return red; }
@@ -68,10 +62,6 @@ namespace ColorARGB
                 }
             }
         }
-
-
-        private byte green;
-
         public byte Green
         {
             get { return green; }
@@ -84,10 +74,6 @@ namespace ColorARGB
                 }
             }
         }
-
-
-        private byte blue;
-
         public byte Blue
         {
             get { return blue; }
