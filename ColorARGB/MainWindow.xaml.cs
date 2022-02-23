@@ -23,33 +23,41 @@ namespace ColorARGB
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public ObservableCollection<MyColor> colors { set; get; }
-        public ObservableCollection<Color> colors { set; get; }
+        public ObservableCollection<MyColor> Colors { set; get; }
+        //public ObservableCollection<Color> Colors { set; get; }
 
         public MainWindow()
         {
             InitializeComponent();
+            //DataContext = new ViewModels();
             this.DataContext = new ViewModels();
             //colors = new ObservableCollection<MyColor>();
-            colors = new ObservableCollection<Color>();
-            ListColor.ItemsSource = colors;
+            //colors = new ObservableCollection<Color>();
+            ListColor.ItemsSource = Colors;
 
-        }
-        public class ObservableObject : INotifyPropertyChanged
-        {
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            protected void OnPropertyChanged([CallerMemberName] string prop = "")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //colors.Add
+            /*for (int i = 0; i < 4; i++)
+            {
+                ListGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                ListGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            }*/
+            //Colors.Add()
             //var selected = (sender as Slider). as st
-            //ListColor.SelectedItem = C;
+            //ListColor.Item ;
+            /*object selectedItem = ((ListBox)sender).SelectedItem;
+            Color color = (Color)selectedItem;
+            ListColor.Background = new SolidColorBrush(color);*/
+            //var selected = BlockColor.Background;
+            //ListColor.Background = BlockColor.Background;
+            //ListBoxItem = BlockColor.Background;
+            //ListColor.Item.Background. = selected;
+            //Colors.Add()
         }
     }
 }
