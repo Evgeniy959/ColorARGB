@@ -27,15 +27,6 @@ namespace ColorARGB
             InitializeComponent();
             this.DataContext = new ViewModels();
         }
-        public class ObservableObject : INotifyPropertyChanged
-        {
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            protected void OnPropertyChanged([CallerMemberName] string prop = "")
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-            }
-        }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
