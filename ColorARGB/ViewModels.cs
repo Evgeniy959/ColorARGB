@@ -20,6 +20,21 @@ namespace ColorARGB
             Colors = new ObservableCollection<MyColor>();
 
         }
+        // команда добавления нового объекта
+        private RelayCommand addCommand;
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                return addCommand ??
+                  (addCommand = new RelayCommand(obj =>
+                  {
+                      MyColor color = new MyColor();
+                      Colors.Insert(0, color);
+                      SelectedColor = color;
+                  }));
+            }
+        }
         public MyColor SelectedColor
         {
             get { return selectedColor; }

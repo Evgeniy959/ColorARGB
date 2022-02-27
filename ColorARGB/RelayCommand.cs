@@ -9,7 +9,31 @@ namespace ColorARGB
 {
     public class RelayCommand : ICommand
     {
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
+
         public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return this.canExecute == null || this.canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            this.execute(parameter);
+        }
+        /*public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
@@ -17,12 +41,19 @@ namespace ColorARGB
 
         Action<object> execute;
         Func<object, bool> canExecute;
+        private Action<object> p;
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
+
+        public RelayCommand(Action<object> p)
+        {
+            this.p = p;
+        }
+
         public bool CanExecute(object parameter)
         {
             return canExecute == null || this.canExecute(parameter);
@@ -31,6 +62,6 @@ namespace ColorARGB
         public void Execute(object parameter)
         {
             this.execute(parameter);
-        }
+        }*/
     }
 }

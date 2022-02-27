@@ -54,7 +54,7 @@ namespace ColorARGB
             Color color = (Color)selectedItem;
             ListColor.Background = new SolidColorBrush(color);*/
             //var selected = BlockColor.Background;
-            //ListColor.Background = BlockColor.Background;
+            ListColor.Background = BlockColor.Background;
             //ListBoxItem = BlockColor.Background;
             //ListColor.Item.Background. = selected;
             //Colors.Add()
