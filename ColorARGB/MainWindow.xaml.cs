@@ -21,43 +21,38 @@ namespace ColorARGB
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    public delegate void ButtonAddPressedHandler();
+    public delegate void ButtonDeletePressedHandler(string str);
+    public delegate void IsButtonEnabledHandler();
+    public delegate void NotButtonEnabledHandler();
     public partial class MainWindow : Window
     {
-        public ObservableCollection<MyColor> Colors { set; get; }
-        //public ObservableCollection<Color> Colors { set; get; }
+        public static ButtonAddPressedHandler ButtonPressed;
+        public static IsButtonEnabledHandler IsButtonEnabled;
+        public static NotButtonEnabledHandler NotButtonEnabled;
 
         public MainWindow()
         {
             InitializeComponent();
             //DataContext = new ViewModels();
-            this.DataContext = new ViewModels();
-            //colors = new ObservableCollection<MyColor>();
-            //colors = new ObservableCollection<Color>();
-            ListColor.ItemsSource = Colors;
+            this.DataContext = new ViewModels(ColorCol);
+            IsButtonEnabled += IsEnable;
+            //NotButtonEnabled += NotEnable;
 
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            /*for (int i = 0; i < 4; i++)
-            {
-                ListGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                ListGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            }*/
-            //Colors.Add()
-            //var selected = (sender as Slider). as st
-            //ListColor.Item ;
-            /*object selectedItem = ((ListBox)sender).SelectedItem;
-            Color color = (Color)selectedItem;
-            ListColor.Background = new SolidColorBrush(color);*/
-            //var selected = BlockColor.Background;
-            //ListColor.Background = BlockColor.Background;
-            //ListBoxItem = BlockColor.Background;
-            //ListColor.Item.Background. = selected;
-            //Colors.Add()
+            ButtonPressed?.Invoke();
         }
+        private void IsEnable()
+        {
+            Add.IsEnabled = true;
+        }
+        private void NotEnable()
+        {
+            Add.IsEnabled = false;
+        }
+
     }
 }

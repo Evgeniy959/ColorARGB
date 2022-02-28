@@ -86,5 +86,9 @@ namespace ColorARGB
                 }
             }
         }
+        public MyColor Clone()
+        {
+            return new MyColor { Red = this.Red, Green = this.Green, Blue = this.Blue, Alpha = this.Alpha, Brush = this.Brush.Clone() };
+        }
     }
 }

@@ -56,47 +56,10 @@
         <TextBlock x:Name="BlockColor" Grid.Column="3" Grid.RowSpan="4" Width="60" Margin="10" Background="{Binding SelectedColor.Brush}"></TextBlock>
 
 
-        <Button Content="Add" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Height="30" Click="AddButton_Click"></Button>
-        <!--<StackPanel Grid.Row="5" Grid.ColumnSpan="3" >
-            <ListBox x:Name="ListColor" ItemsSource="{Binding ElementName=BlockColor}" SelectedItem ="{Binding Path=Background}" >
-                <ListBoxItem Content="First" />
-               <ListBoxItem Content="First" />
-                <ListBoxItem Height="20" Background="{Binding SelectedColor.Brush}" />
-                <ListBoxItem Height="20" Background="{Binding SelectedColor.Brush}" />
-                 
-            </ListBox>
-            
-
-        </StackPanel>-->
-        <ListBox x:Name="ListColor" Grid.Row="5" Grid.ColumnSpan="3" />
-        <!--ItemsSource="{Binding Colors}" SelectedItem ="{Binding SelectedColor}"
-        <ListBoxItem Height="30"  /> -->
-
-        <!--<ListBox x:Name="ListColor" Grid.Row="5" Grid.ColumnSpan="3" ItemsSource="{Binding ElementName=BlockColor}" SelectedItem ="{Binding BlockColor.Background}" Background="{Binding SelectedColor.Brush}" />
-        <ListBox x:Name="ListColor" Grid.Row="5" Grid.ColumnSpan="3">
-
-            <ListBox.ItemTemplate> 
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <ListBoxItem Background="{Binding SelectedColor.Brush}" Content="First" />
-                        <ListBoxItem Content="First" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
-
-        <StackPanel Margin="5" Grid.Row="5" Grid.Column="4" Orientation="Vertical">
-            <TextBlock Text="111" HorizontalAlignment="Center"/>
-            <Button Content="Delete" Margin="10" Width="50" Height="30"/>
-            <Button Content="Delete" Margin="10" Width="50" Height="30"/>
-        </StackPanel>
-        <!--<StackPanel Grid.Row="5" Grid.Column="4" Orientation="Horizontal">
-            <TextBlock Text="111"></TextBlock>
-            <TextBlock></TextBlock>
-            <Button Content="Delete"  Margin="10" Height="30"></Button>
-                <Grid x:Name="ListGrid" ShowGridLines="True"/>
-
-        </StackPanel>-->
+        <Button x:Name="Add" Content="Add" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Height="30" Click="AddButton_Click"></Button>
+        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="4">
+            <Grid x:Name="ColorCol" />
+        </ScrollViewer>
 
     </Grid>
 </Window>
