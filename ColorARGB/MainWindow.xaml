@@ -57,9 +57,9 @@
 
 
         <Button x:Name="Add" Content="Add" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Height="30" Click="AddButton_Click"></Button>
-        <!--<ScrollViewer Grid.Row="5" Grid.ColumnSpan="4">
+        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="4">
             <Grid x:Name="ColorCol" />
-        </ScrollViewer>-->
+        </ScrollViewer>
 
     </Grid>
 </Window>
