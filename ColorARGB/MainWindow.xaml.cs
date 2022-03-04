@@ -24,12 +24,12 @@ namespace ColorARGB
     public delegate void ButtonAddPressedHandler();
     public delegate void ButtonDeletePressedHandler(string str);
     public delegate void IsButtonEnabledHandler();
-    public delegate void NotButtonEnabledHandler();
+    //public delegate void NotButtonEnabledHandler();
     public partial class MainWindow : Window
     {
         public static ButtonAddPressedHandler ButtonPressed;
         public static IsButtonEnabledHandler IsButtonEnabled;
-        public static NotButtonEnabledHandler NotButtonEnabled;
+        //public static NotButtonEnabledHandler NotButtonEnabled;
 
         public MainWindow()
         {
@@ -37,7 +37,7 @@ namespace ColorARGB
             //DataContext = new ViewModels();
             this.DataContext = new ViewModels(ColorCol);
             IsButtonEnabled += IsEnable;
-            NotButtonEnabled += NotEnable;
+            //NotButtonEnabled += NotEnable;
 
         }
 
@@ -49,7 +49,7 @@ namespace ColorARGB
         {
             Add.IsEnabled = true;
         }
-        private void NotEnable()
+        public void NotEnable()
         {
             Add.IsEnabled = false;
         }
