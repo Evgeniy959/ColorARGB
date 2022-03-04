@@ -35,7 +35,6 @@ namespace ColorARGB
             }
             else MainWindow.NotButtonEnabled?.Invoke();
         }
-
         public void DeleteColor(string str)
         {
             var subsDel = str.Split('_');
