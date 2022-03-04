@@ -31,15 +31,15 @@ namespace ColorARGB
                 var color = _SelectedColor.Clone();
                 Colors.Add(_Converter.ConvertToHEX(color), color);
                 _ColorViewOperations.AddColorToScreen(Colors.Count, color, Colors);
-                MainWindow.NotButtonEnabled?.Invoke();
+                
             }
-
+            else MainWindow.NotButtonEnabled?.Invoke();
         }
 
         public void DeleteColor(string str)
         {
-            var subs = str.Split('_');
-            Colors.Remove(subs[1]);
+            var subsDel = str.Split('_');
+            Colors.Remove(subsDel[1]);
             _ColorViewOperations.UpdateColorOnScreen(Colors);
         }
     }
