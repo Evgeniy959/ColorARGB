@@ -23,7 +23,7 @@ namespace ColorARGB
             MainWindow.ButtonPressed += showColor.AddColor;
 
             //SelectedColor = new ObservableCollection<MyColor> { Alpha = 127, Red = 255, Green = 255, Blue = 0 };
-            //Colors = new ObservableCollection<MyColor>();
+            //Colors = new ObservableCollection<MyColor>(); 
 
         }
         public MyColor SelectedColor
