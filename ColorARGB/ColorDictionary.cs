@@ -26,7 +26,7 @@ namespace ColorARGB
         }
         public void AddColor()
         {
-            var win = new MainWindow();
+            //var win = new MainWindow();
 
             if (!Colors.ContainsKey(_Converter.ConvertToHEX(_SelectedColor)))
             {
@@ -35,8 +35,8 @@ namespace ColorARGB
                 _ColorViewOperations.AddColorToScreen(Colors.Count, color, Colors);
                 
             }
-            //else MainWindow.NotButtonEnabled?.Invoke();
-            else win.NotEnable();
+            else MainWindow.NotButtonEnabled?.Invoke();
+            //else win.NotEnable();
         }
         public void DeleteColor(string str)
         {
