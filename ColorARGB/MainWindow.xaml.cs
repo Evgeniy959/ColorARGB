@@ -30,20 +30,29 @@ namespace ColorARGB
         public static ButtonAddPressedHandler ButtonPressed;
         public static IsButtonEnabledHandler IsButtonEnabled;
         public static NotButtonEnabledHandler NotButtonEnabled;
+        public static ObservableCollection<Grid> Colors { set; get; }
 
         public MainWindow()
         {
             InitializeComponent();
             //DataContext = new ViewModels();
-            this.DataContext = new ViewModels(ColorCol);
+            this.DataContext = new ViewModels();
             IsButtonEnabled += IsEnable;
             NotButtonEnabled += NotEnable;
+            Colors = new ObservableCollection<Grid>();
+            //ListColor.ItemsSource = Colors;
 
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ButtonPressed?.Invoke();
+            //Grid colorCol = new Grid();
+            //if (colorCol.Children.Contains())
+            
+            //Colors.Add(colorCol);
+            //var grid = new Grid();
+            //ListColor.;
         }
         private void IsEnable()
         {
