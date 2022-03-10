@@ -39,11 +39,15 @@ namespace ColorARGB
             IsButtonEnabled += IsEnable;
             NotButtonEnabled += NotEnable;
 
-        }
+    }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            ButtonPressed?.Invoke();
+            //ButtonPressed?.Invoke();
+            //MyColor selectedColor = new MyColor();
+           var selectedColor = new ViewModels(ColorCol);
+            var showColor = new ColorDictionary(selectedColor.SelectedColor, ColorCol);
+            showColor.AddColor();
         }
         private void IsEnable()
         {
