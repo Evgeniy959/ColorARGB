@@ -45,7 +45,8 @@ namespace ColorARGB
         {
             //ButtonPressed?.Invoke();
             //MyColor selectedColor = new MyColor();
-           var selectedColor = new ViewModels(ColorCol);
+            var selectedColor = new ViewModels(ColorCol);
+            //selectedColor.SelectedColor = new MyColor { Alpha = 127, Red = 255, Green = 255, Blue = 0 };
             var showColor = new ColorDictionary(selectedColor.SelectedColor, ColorCol);
             showColor.AddColor();
         }
