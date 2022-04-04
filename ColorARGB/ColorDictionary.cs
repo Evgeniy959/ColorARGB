@@ -31,8 +31,9 @@ namespace ColorARGB
                 var color = _SelectedColor.Clone();
                 Colors.Add(_Converter.ConvertToHEX(color), color);
                 _ColorViewOperations.AddColorToScreen(Colors.Count, color, Colors);
-                MainWindow.NotButtonEnabled?.Invoke();
+                //MainWindow.NotButtonEnabled?.Invoke();
             }
+            else MainWindow.NotButtonEnabled?.Invoke();
 
         }
 

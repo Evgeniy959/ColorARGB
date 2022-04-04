@@ -37,7 +37,7 @@ namespace ColorARGB
             //DataContext = new ViewModels();
             this.DataContext = new ViewModels(ColorCol);
             IsButtonEnabled += IsEnable;
-            //NotButtonEnabled += NotEnable;
+            NotButtonEnabled += NotEnable;
 
         }
 
