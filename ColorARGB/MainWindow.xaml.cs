@@ -125,7 +125,7 @@ namespace ColorARGB
                 _ColorCol.Children.Add(info);
                 Colors.Add(_ColorCol);
 
-                Colors.
+                //Colors.
                 //break;
 
             }
