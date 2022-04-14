@@ -30,6 +30,7 @@ namespace ColorARGB
         public static ButtonAddPressedHandler ButtonPressed;
         public static IsButtonEnabledHandler IsButtonEnabled;
         public static NotButtonEnabledHandler NotButtonEnabled;
+        public event ButtonDeletePressedHandler ButtonDeletePressed;
         public static ObservableCollection<Grid> Colors { set; get; }
         public static Dictionary<string, MyColor> colors { set; get; }
         //private MyColor color { get; set; }
@@ -53,13 +54,14 @@ namespace ColorARGB
             //var _Converter = new ConverterToHex();
             //ListColor.ColorCol.
             MyColor color = new MyColor();
-
+            ButtonDeletePressed += DeleteCol;
 
 
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+
             /*var _Converter = new ConverterToHex();
             var _ColorViewOperations = new ViewColor(_ColorCol, _Converter);*/
             //var color = _SelectedColor.Clone();
@@ -123,12 +125,26 @@ namespace ColorARGB
                 if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 330, MinHeight = 30, Background = colors[_Converter.ConvertToHEX(color)].Brush });
                 if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete", Name = $"b_{_Converter.ConvertToHEX(color)}_b" });*/
 
-                if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = $"#{_Converter.ConvertToHEX(color)}" });
+                //if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = $"#{_Converter.ConvertToHEX(color)}" });
+                if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = "#X567F" });
                 //if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Background = color.Brush });
                 if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 330, MinHeight = 30, Background = BlockColor.Background });
-                if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete"/*, Name = $"b_{_Converter.ConvertToHEX(color)}_b"*/ });
+                if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete", Name = "Del",  /*$"b_{_Converter.ConvertToHEX(color)}_b"*/ });
                 _ColorCol.Children.Add(info);
                 Colors.Add(_ColorCol);
+                //ButtonDel.Click += DeleteButton_Click;
+                /*object item = "";
+                if (item is Button)
+                {
+                    (item as Button).Click += DeleteButton_Click;
+                }*/
+                foreach (var item in info.Children)
+                {
+                    if (item is Button)
+                    {
+                        (item as Button).Click += DeleteButton_Click;
+                    }
+                }
                 //ListColor.Items.Clear();
                 //ListColor.Items.Add(_ColorCol);
 
@@ -142,6 +158,23 @@ namespace ColorARGB
                 //ListColor.Items.Clear();
                            
             
+        }
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonDeletePressed?.Invoke((sender as Button).Name);
+            //ListColor.Items.Clear();
+            /*var selected = (sender as ListBox).SelectedItem as string;
+            selected.Contains("");*/
+            /*if (selected is ListBoxItem)
+            {
+                var msg = (selected as ListBoxItem).Content;
+                msg.Clear();
+            }*/
+        }
+        public void DeleteCol(string str)
+        {
+           _ColorCol.Children.Clear();
+            //ListColor.SelectedItem.Clear();
         }
         private void IsEnable()
         {
