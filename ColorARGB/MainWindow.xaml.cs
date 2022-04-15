@@ -22,7 +22,8 @@ namespace ColorARGB
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public delegate void ButtonAddPressedHandler();
-    public delegate void ButtonDeletePressedHandler(string str);
+    //public delegate void ButtonDeletePressedHandler(string str);
+    public delegate void ButtonDeletePressedHandler();
     public delegate void IsButtonEnabledHandler();
     public delegate void NotButtonEnabledHandler();
     public partial class MainWindow : Window
@@ -30,138 +31,76 @@ namespace ColorARGB
         public static ButtonAddPressedHandler ButtonPressed;
         public static IsButtonEnabledHandler IsButtonEnabled;
         public static NotButtonEnabledHandler NotButtonEnabled;
-        public event ButtonDeletePressedHandler ButtonDeletePressed;
+        //public event ButtonDeletePressedHandler ButtonDeletePressed;
         public static ObservableCollection<Grid> Colors { set; get; }
         public static Dictionary<string, MyColor> colors { set; get; }
         //private MyColor color { get; set; }
         public MyColor color { get; set; }
-        private Grid _ColorCol { get; set; }
-        private ConverterToHex _Converter { get; set; }
-        private ViewColor _ColorViewOperations { get; set; }
         //private Grid _ColorCol { get; set; }
+        private ConverterToHex _Converter { get; set; }
+        private ListBox _ListColor { get; set; }
+        private TextBlock _BlockColor { get; set; }
+        private ViewColor _ColorViewOperations { get; set; }
 
+        //public MainWindow(Grid colorCol, ListBox listColor, TextBox blockColor, ConverterToHex converter)
         public MainWindow()
         {
             InitializeComponent();
+            _Converter = new ConverterToHex();
+            //_Converter = converter;
+            _BlockColor = BlockColor;
+            _ListColor = ListColor;
+            //_ColorCol = new Grid();
             //DataContext = new ViewModels();
             this.DataContext = new ViewModels();
             IsButtonEnabled += IsEnable;
             NotButtonEnabled += NotEnable;
             Colors = new ObservableCollection<Grid>();
-            colors = new Dictionary<string, MyColor>();
+            //colors = new Dictionary<string, MyColor>();
             //_ColorCol = new Grid();
             ListColor.ItemsSource = Colors;
             //var _Converter = new ConverterToHex();
             //ListColor.ColorCol.
             MyColor color = new MyColor();
-            ButtonDeletePressed += DeleteCol;
-
+            //ButtonDeletePressed += DeleteCol;
+            _ColorViewOperations = new ViewColor(/*_ColorCol,*/ _ListColor, _BlockColor, _Converter);
+            //ButtonPressed += _ColorViewOperations.AddColorToScreen();
 
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
-            /*var _Converter = new ConverterToHex();
-            var _ColorViewOperations = new ViewColor(_ColorCol, _Converter);*/
-            //var color = _SelectedColor.Clone();
-            /*Colors.Add(_Converter.ConvertToHEX(color), color);
-            _ColorViewOperations.AddColorToScreen(Colors.Count, color, Colors);*/
-
-            /*if (!Colors.ContainsKey(_Converter.ConvertToHEX(_SelectedColor)))
-            {
-                var color = _SelectedColor.Clone();
-                Colors.Add(_Converter.ConvertToHEX(color), color);
-                _ColorViewOperations.AddColorToScreen(Colors.Count, color, Colors);
-
-            }
-            else MainWindow.NotButtonEnabled?.Invoke();*/
             //ButtonPressed?.Invoke();
-            //Grid colorCol = new Grid();
-            //if (colorCol.Children.Contains())
-            //var col = 
-
-            //Colors.Add(_Converter.ConvertToHEX(color), color);
-
-            //var grid = new Grid();
-
-            //Colors.Clear();
-
-            //ColorCol.ColumnDefinitions.Clear();
-
-            //grid.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 330, MinHeight = 30, Background = colors[_Converter.ConvertToHEX(color)].Brush });
-            /*Colors.Add(grid);
-            grid.ColumnDefinitions.Clear();*/
-            //Colors.Clear();
-            //grid.Clear();
-            //ListColor.Background = */
-
-            //var _ColorCol = new Grid();
-            //MyColor color = new MyColor();
-            _ColorCol = new Grid();
-
-            _ColorCol.ColumnDefinitions.Clear();
-            //_ColorCol.RowDefinitions.Clear();
-            //Colors.Clear();
-
+            _ColorViewOperations.AddColorToScreen();
+            /*_ColorCol = new Grid();
             _ColorCol.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
             _ColorCol.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(350) });
             _ColorCol.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
-            //_ColorCol.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
-            //_ColorCol.RowDefinitions.Clear();
-            //Colors.Clear();
-            //Colors.Add(_ColorCol);
-            //ListColor.Items.Clear();
             for (int i = 0; i < 3; i++)
             {
-                //var info = new StackPanel();
-                //MyColor color = new MyColor();
-                //var colord = _Converter.ConvertToHEX(color);
                 var info = new StackPanel();
                 info.Orientation = Orientation.Horizontal;
-                //Grid.SetRow(info, j);
                 Grid.SetColumn(info, i);
-                /*if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = $"#{_Converter.ConvertToHEX(color)}" });
-                if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 330, MinHeight = 30, Background = colors[_Converter.ConvertToHEX(color)].Brush });
-                if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete", Name = $"b_{_Converter.ConvertToHEX(color)}_b" });*/
-
-                //if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = $"#{_Converter.ConvertToHEX(color)}" });
                 if (i == 0) info.Children.Add(new Label { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Content = "#X567F" });
-                //if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, Background = color.Brush });
                 if (i == 1) info.Children.Add(new TextBlock { Margin = new Thickness(10, 10, 10, 10), MinWidth = 330, MinHeight = 30, Background = BlockColor.Background });
-                if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete", Name = "Del",  /*$"b_{_Converter.ConvertToHEX(color)}_b"*/ });
+                if (i == 2) info.Children.Add(new Button { Margin = new Thickness(10, 10, 10, 10), MinWidth = 80, MinHeight = 30, Content = "Delete", Name = "Del",  /*$"b_{_Converter.ConvertToHEX(color)}_b"*/ /* });
                 _ColorCol.Children.Add(info);
-                Colors.Add(_ColorCol);
-                //ButtonDel.Click += DeleteButton_Click;
-                /*object item = "";
-                if (item is Button)
-                {
-                    (item as Button).Click += DeleteButton_Click;
-                }*/
-                foreach (var item in info.Children)
+                /*foreach (var item in info.Children)
                 {
                     if (item is Button)
                     {
                         (item as Button).Click += DeleteButton_Click;
                     }
                 }
-                //ListColor.Items.Clear();
-                //ListColor.Items.Add(_ColorCol);
-
-                //Colors.
-                //break;
 
             }
-            
-                //_ColorCol.Children.Add(info);
-                //Colors.Add(new Grid());
-                //ListColor.Items.Clear();
-                           
-            
+            Colors.Add(_ColorCol);*/
+
         }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        /*private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ButtonDeletePressed?.Invoke((sender as Button).Name);
+            //ButtonDeletePressed?.Invoke((sender as Button).Name);
+            ButtonDeletePressed?.Invoke();
             //ListColor.Items.Clear();
             /*var selected = (sender as ListBox).SelectedItem as string;
             selected.Contains("");*/
@@ -169,13 +108,10 @@ namespace ColorARGB
             {
                 var msg = (selected as ListBoxItem).Content;
                 msg.Clear();
-            }*/
-        }
-        public void DeleteCol(string str)
-        {
-           _ColorCol.Children.Clear();
-            //ListColor.SelectedItem.Clear();
-        }
+            }
+        }*/
+        //public void DeleteCol(string str)
+        
         private void IsEnable()
         {
             Add.IsEnabled = true;
