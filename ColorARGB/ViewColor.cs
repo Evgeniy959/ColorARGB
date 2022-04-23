@@ -76,7 +76,6 @@ namespace ColorARGB
                 //Colors[i].ColumnDefinitions.Clear();
             }
         }
-
         /*public void UpdateColorOnScreen(Dictionary<string, MyColor> colors)
         {
             _ColorCol.Children.Clear();
